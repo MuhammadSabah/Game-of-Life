@@ -1,4 +1,6 @@
 import math
+import time
+
 import pygame
 import numpy
 
@@ -26,25 +28,23 @@ def draw(screen, row, col, color):
 
 
 def next_generation(sum_alive_neighbors, row, col, updated_cells):
-    cell = cells_grid[row][col]
-    cell_color = WHITE if cell == 0 else GRAY
+    cell = cells_grid[row, col]
+    cell_color = WHITE if cell == 1 else GRAY
     if cell == 1:
-        if 2 == sum_alive_neighbors == 3:
-            cells_grid[row][col] = 1
-            cell_color = WHITE
+        if sum_alive_neighbors == 3 or sum_alive_neighbors == 2:
+            updated_cells[row, col] = 1
+            # cell_color = WHITE
         elif sum_alive_neighbors > 3 or sum_alive_neighbors < 2:
-            cells_grid[row][col] = 0
             cell_color = GRAY
     else:
         if sum_alive_neighbors == 3:
-            updated_cells[row][col] = 1
-            cell_color = WHITE
-        else:
-            cells_grid[row][col] = 0
-            cell_color = GRAY
+            updated_cells[row, col] = 1
+            # cell_color = WHITE
+        # else:
+        #     cell_color = GRAY
 
     draw(screen, row, col, cell_color)
-    # return updated_cells
+    return updated_cells
 
 
 def count_alive_neighbors(row, col, cells):
@@ -57,25 +57,18 @@ def update(cells):
     updated_grid_cells = numpy.zeros((cols, rows))
     for r, c in numpy.ndindex(cells.shape):
         sum_neighbors = count_alive_neighbors(r, c, cells)
-        next_generation(sum_neighbors, r, c, updated_grid_cells)
+        updated_grid_cells = next_generation(sum_neighbors, r, c, updated_grid_cells)
+
+    return updated_grid_cells
 
 
-def main():
+def start(cells_grid):
     pygame.init()
-    cells_grid[8][9] = 1
-    cells_grid[8][8] = 1
-    cells_grid[8][7] = 1
-    cells_grid[7][8] = 1
-    cells_grid[7][9] = 1
-    cells_grid[7][7] = 1
-    cells_grid[6][8] = 1
-    cells_grid[6][7] = 1
-    cells_grid[6][9] = 1
-
     update(cells_grid)
     pygame.display.update()
     pygame.display.flip()
 
+    start = False
     done = False
     while not done:
         for event in pygame.event.get():
@@ -88,9 +81,24 @@ def main():
                 if event.buttons[0]:
                     a = x // cell_size
                     b = y // cell_size
-                    cells_grid[a][b] = 1
+                    if cells_grid[a, b] == 0:
+                        cells_grid[a, b] = 1
+                        update(cells_grid)
+                        pygame.display.update()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    start = not start
                     update(cells_grid)
                     pygame.display.update()
 
+        screen.fill(BLACK)
+        if start:
+            cells_grid = update(cells_grid)
+            pygame.display.update()
 
-main()
+        time.sleep(0.0001)
+
+
+if __name__ == "__main__":
+    start(cells_grid)
+    pygame.quit()
