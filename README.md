@@ -4,6 +4,7 @@ The [**Game of Life**](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) is
 
 **Demo:**
 
-![Game_of_Life-final_AdobeExpress](https://user-images.githubusercontent.com/75329130/222966279-069d2217-3599-4040-8cf2-009f30a2f43c.gif)
+![GAME-OF-LIFE](https://user-images.githubusercontent.com/75329130/222967694-ca2b0f28-3831-4297-a890-6a40888e90bc.gif)
+
 
 
