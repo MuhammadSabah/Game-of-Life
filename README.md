@@ -4,6 +4,7 @@ The [**Game of Life**](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) is
 
 **Demo:**
 
+<img src="[/images/output/video1.gif](https://user-images.githubusercontent.com/75329130/222967911-e89ff611-929d-46ce-ba14-47c0e5971b58.gif)" width="100%" height="100%"/>
 ![ezgif com-video-to-gif](https://user-images.githubusercontent.com/75329130/222967911-e89ff611-929d-46ce-ba14-47c0e5971b58.gif)
 
 
