@@ -4,7 +4,8 @@ The [**Game of Life**](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) is
 
 **Demo:**
 
-![GAME-OF-LIFE](https://user-images.githubusercontent.com/75329130/222967694-ca2b0f28-3831-4297-a890-6a40888e90bc.gif)
+![GAME-OF-LIFE (1)](https://user-images.githubusercontent.com/75329130/222967829-a6f71ae8-af34-40d9-946e-7b1501521905.gif)
+
 
 
 
