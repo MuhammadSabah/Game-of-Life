@@ -1,16 +1,15 @@
 import math
 import time
-
+import tkinter as tk
 import pygame
 import numpy
 
 # Setup
 window_height = 630
-window_width = 1080
+window_width = 1140
 cell_size = 15
 cols = math.ceil(window_width / cell_size)
 rows = math.ceil(window_height / cell_size)
-# cells_grid = numpy.zeros((cols, rows))
 screen = pygame.display.set_mode((window_width, window_height))
 pygame.display.set_caption("Game of Life")
 
@@ -36,7 +35,7 @@ def next_generation(cells_grid, sum_alive_neighbors, row, col, updated_cells, ne
             updated_cells[row, col] = 1
             if next:
                 cell_color = WHITE
-        elif sum_alive_neighbors > 3 or sum_alive_neighbors < 2:
+        else:
             if next:
                 cell_color = WHITE_TINT
     else:
@@ -70,11 +69,12 @@ def start():
     pygame.display.update()
 
     start = False
-    while True:
+    done = False
+    while not done:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-                break
+                done = True
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     start = not start
